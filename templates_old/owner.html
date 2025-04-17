@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Owner{% endblock %}
+{% block body %}
+    <a href="{{ url_for('create_staff_account') }}">Create staff account</a>
+    </br>
+    </br>
+    <div class="navigation">
+        {% if g.user.role == 0 %}
+            <h2>Scheduled Events</h2>
+            {% if not events %}
+                <h3>No events are scheduled at this time!</h3>
+            {% else %}
+                {% for event in events %}
+                    <p>{{ event.date|datetimeformat }}</p>
+                    {% if not event.workers %}
+                        <p>No workers are scheduled for this event!</p>
+                    {% else %}
+                        <p>Workers: </p>
+                        {% for worker in event.workers %}
+                            <p>{{ worker.user.username }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    </br>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Owner{% endblock %}
+{% block body %}
+
+    <div class="navigation">
+        {% if g.user.role == 1 %}
+            <h2>You are scheduled to work:</h2>
+            {% if not scheduled_events %}
+                <h3>None!</h3>
+            {% else %}
+                {% for event in scheduled_events %}
+                    <p>{{ event.date|datetimeformat }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <h2>You can sign up to work:</h2>
+            {% if not open_events %}
+                <h3>None!</h3>
+            {% else %}
+                {% for event in open_events %}
+                    <p>{{ event.date|datetimeformat }} <a href="{{ url_for('signup_event', event_id=event.id) }}">Sign Up</a></p>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+
+{% endblock %}

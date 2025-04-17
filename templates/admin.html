@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Admin{% endblock %}
+{% block body %}
+    <h2>Create New Course</h2>
+    {% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+    <form action="" method="post">
+    <dl>
+        <dt>Title:
+        <dd><input type="text" name="title" size="30">
+        <dt>Course Code:
+        <dd><input type="text" name="course_code" size="30">
+    </dl>
+    <div class="actions"><input type="submit" value="Add Course"></div>
+    </form>
+{% endblock %}

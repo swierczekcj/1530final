@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Owner{% endblock %}
+{% block body %}
+
+    <div class="navigation">
+        {% if g.user.role == 2 %}
+            {% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+            <h2>Event Request Form:</h2>
+            <form action="" method="post">
+                <dl>
+                    <dt>Date:
+                    <input type="date" name="event-date" />
+                </dl>
+                <div class="actions"><input type="submit" value="Submit Request"></div>
+                </form>
+
+            </br>
+            </br>
+
+            <h2>Your Requested Events:</h2>
+            {% if not requested_events %}
+                <h3>None!</h3>
+            {% else %}
+                {% for event in requested_events %}
+                    <p>{{ event.date|int|datetimeformat }} <a href="{{ url_for('cancel_event', event_id=event.id) }}">Cancel</a></p>
+                {% endfor %}
+            {% endif %}
+
+        {% endif %}
+    </div>
+
+{% endblock %}
