@@ -17,4 +17,11 @@ def create_app():
     # Register Blueprints
     app.register_blueprint(course_controller.bp)  # Add other controllers similarly
 
+    # Add CLI command
+    @app.cli.command("initdb")
+    def initdb_command():
+        """Initializes the database."""
+        db.create_all()
+        print("Initialized the database.")
+
     return app
