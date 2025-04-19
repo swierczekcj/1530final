@@ -35,9 +35,9 @@ def initdb_command():
     db.session.add(Professor("Dumbledore"))
     db.session.add(Course("Intermediate Programming", "CS 0401"))
     db.session.add(Course("Defense Against the Dark Arts 2", "DADA 0220"))
-    db.session.add(course_Potions)
+    db.session.add(course_Potions)   
     db.session.add(Course("Software Engineering", "CS 1530"))
-    db.session.add(Rating(5, 5, course_Potions, prof_Snape))
+    db.session.add(Rating(5, 5, course_Potions, prof_Snape, "this class is awesome! professor snape is the potions goat! he once taught me how to make Felix Felicis"))
     db.session.commit()
     print("Initialized the database.")
 
