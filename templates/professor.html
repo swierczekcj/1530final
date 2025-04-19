@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Course{% endblock %}
+{% block body %}
+    <h1>Professor: {{ course.title }}</h2>
+
+    {% for rating in ratings %}
+        <p>Workload:{{ rating.workload }} Difficulty:{{ rating.difficulty }}</p>        
+        <p>{{ rating.description }}<p>
+    {% endfor %}
+{% endblock %}
