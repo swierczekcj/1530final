@@ -2,4 +2,8 @@
 {% block title %}Course{% endblock %}
 {% block body %}
     <h2>Course: {{ course.title }}</h2>
+
+    {% for rating in ratings %}
+        <p>{{ rating.workload }} {{ rating.difficulty }}</p>        
+    {% endfor %}
 {% endblock %}
