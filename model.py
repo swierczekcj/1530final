@@ -54,6 +54,7 @@ class Rating(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     workload: Mapped[int]
     difficulty: Mapped[int]
+    description: Mapped[str] = mapped_column(String(300))
     
     professor_id: Mapped[int] = mapped_column(ForeignKey("prof_table.id"))
     professor: Mapped["Professor"] = relationship("Professor", back_populates="ratings")
@@ -61,8 +62,9 @@ class Rating(db.Model):
     course_id: Mapped[int] = mapped_column(ForeignKey("course_table.id"))
     course: Mapped["Course"] = relationship("Course", back_populates="ratings")
 
-    def __init__(self, workload, difficulty, course:Course, professor):
+    def __init__(self, workload, difficulty, course:Course, professor, description):
         self.workload = workload
         self.difficulty = difficulty
         self.course = course
         self.professor = professor
+        self.description = description
