@@ -1,15 +1,33 @@
+:root {
+    --sky-blue: #6A9BF1;
+    --powder-blue: #8AB9F1;
+    --soft-lemon: #F8DE7E;
+    --sunshine-yellow: #FFC40A;
+    --charcoal-gray: #2F2E2C;
+    --pitch-black: #050505;
+    --button-text-color: white;
+    --highlight-color: #105751;
+    --divider-color: #DBF3F1;
+    --message-bg-color: #F0FAF9;
+    --error-bg-color: #FAE4E4;
+}
+
 body {
-    background: #dbbaf4;
+    background: var(--powder-blue);
     font-family: 'Trebuchet MS', sans-serif;
     font-size: 14px;
 }
 
+p {
+    color: var(--charcoal-gray);
+}
+
 a {
-    color: #26776F;
+    color: var(--charcoal-gray);
 }
 
 a:hover {
-    color: #333;
+    color: var(--pitch-black);
 }
 
 input[type="text"],
@@ -21,23 +39,24 @@ input[type="password"] {
     font-size: 14px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    color: #105751;
+    color: var(--highlight-color);
 }
 
 input[type="submit"] {
-    background: #105751;
-    border: 1px solid #073B36;
-    padding: 1px 3px;
-    font-family: 'Trebuchet MS', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+    background-color: var(--sky-blue);
     color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: normal;
 }
 
 div.page {
-    background: white;
+    background: var(--soft-lemon);
     border: 1px solid #6ECCC4;
     width: 700px;
     margin: 30px auto;
@@ -47,14 +66,14 @@ div.page h1 {
     background: #6ECCC4;
     margin: 0;
     padding: 10px 14px;
-    color: white;
+    color: red;
     letter-spacing: 1px;
     text-shadow: 0 0 3px #24776F;
     font-weight: normal;
 }
 
 div.page div.navigation {
-    background: #a9e8ff;
+    background: var(--powder-blue);
     padding: 4px 10px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #eee;
@@ -64,13 +83,13 @@ div.page div.navigation {
 }
 
 div.page div.navigation a {
-    color: #444;
+    color: var(--charcoal-gray);
     font-weight: bold;
 }
 
 div.page h2 {
     margin: 0 0 15px 0;
-    color: #105751;
+    color: var(--charcoal-gray)	;/*here*/
     text-shadow: 0 1px 2px #ccc;
 }
 
@@ -103,8 +122,8 @@ div.page ul.messages {
 div.page ul.messages li {
     margin: 10px 0;
     padding: 5px;
-    background: #F0FAF9;
-    border: 1px solid #DBF3F1;
+    background: var(--message-bg-color);
+    border: 1px solid var(--divider-color);
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     min-height: 48px;
@@ -127,7 +146,7 @@ div.page ul.messages li small {
 div.page div.twitbox {
     margin: 10px 0;
     padding: 5px;
-    background: #F0FAF9;
+    background: var(--message-bg-color);
     border: 1px solid #94E2DA;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -169,10 +188,47 @@ ul.flashes li {
 
 div.error {
     margin: 10px 0;
-    background: #FAE4E4;
+    background: var(--error-bg-color);
     border: 1px solid #DD6F6F;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     padding: 4px;
     font-size: 13px;
 }
+
+/*russell added this for search buttons*/
+.btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--sky-blue);
+    color: var(--button-text-color);
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: var(--powder-blue);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #565e64;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 250px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
