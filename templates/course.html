@@ -3,8 +3,15 @@
 {% block body %}
     <h2>Course: {{ course.title }}</h2>
 
-    {% for rating in ratings %}
-        <p>Workload:{{ rating.workload }} Difficulty:{{ rating.difficulty }}</p>        
-        <p>{{ rating.description }}<p>
-    {% endfor %}
+    <div class="twitbox">
+        <p>Average Difficulty: {{ diff }} Average Workload: {{ work }}</p>
+    </div>
+
+    <ul class="ratings">
+        {% for rating in ratings %}
+            <h4>Workload:{{ rating.workload }} Difficulty:{{ rating.difficulty }}</h4>        
+            <p>{{ rating.description }}</p>
+        {% endfor %}
+    </ul>   
+    
 {% endblock %}

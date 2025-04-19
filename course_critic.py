@@ -103,7 +103,13 @@ def course(course_id):
     stmt = db.select(Rating).where(Rating.course_id == course.id)
     ratings = db.session.execute(stmt).scalars().all()
     
+    #get profs
+    ratings2 = course.ratings
+    print(ratings2)
+    
+    diffAvg = sum([rating.difficulty for rating in ratings]) / len(ratings) if ratings else 0
+    workAvg = sum([rating.workload for rating in ratings]) / len(ratings) if ratings else 0
     # calculate average rating
 
-    return render_template("course.html", course=course, ratings=ratings)
+    return render_template("course.html", course=course, ratings=ratings, diff=diffAvg, work=workAvg)
 
