@@ -13,13 +13,19 @@
 }
 
 body {
+    font-family: 'Didot', 'Playfair Display', serif;
     background: var(--powder-blue);
-    font-family: 'Trebuchet MS', sans-serif;
     font-size: 14px;
 }
 
 p {
     color: var(--charcoal-gray);
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    color: var(--sunshine-yellow);
 }
 
 a {
@@ -29,6 +35,17 @@ a {
 a:hover {
     color: var(--pitch-black);
 }
+
+.navBar {
+    background: var(--sky-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+
 
 input[type="text"],
 input[type="password"] {
@@ -63,12 +80,10 @@ div.page {
 }
 
 div.page h1 {
-    background: #6ECCC4;
     margin: 0;
     padding: 10px 14px;
-    color: red;
+    color: var(--sunshine-yellow);
     letter-spacing: 1px;
-    text-shadow: 0 0 3px #24776F;
     font-weight: normal;
 }
 
