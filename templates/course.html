@@ -1,10 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}Course{% endblock %}
 {% block body %}
+
+    <div style="margin-bottom: 20px;">
+        <a href="{{ url_for('submit') }}">
+            <button style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">
+                Create Submission
+            </button>
+        </a>
+    </div>
+
     <h2>Course: {{ course.title }}</h2>
 
     {% for rating in ratings %}
-        <p>Workload:{{ rating.workload }} Difficulty:{{ rating.difficulty }}</p>        
-        <p>{{ rating.description }}<p>
+        <p>Workload: {{ rating.workload }} Difficulty: {{ rating.difficulty }}</p>        
+        <p>{{ rating.description }}</p>
     {% endfor %}
+
 {% endblock %}
+
