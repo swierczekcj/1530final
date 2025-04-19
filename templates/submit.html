@@ -1,48 +1,44 @@
-{% extends "layout.html" %}
-{% block title %}Submit Review{% endblock %}
-{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit a Review</title>
+</head>
+<body>
+    <h1>Submit a Review</h1>
 
-<h2>Submit a Review</h2>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
 
-<form method="post" style="max-width: 600px; margin-top: 20px;">
-    <div style="margin-bottom: 15px;">
-        <label for="course">Select Course:</label><br>
-        <select name="course" id="course" required style="width: 100%; padding: 8px;">
-            <option value="">-- Choose a course --</option>
+    <form method="post">
+        <label for="course">Course:</label>
+        <select name="course_id" required>
+            <option value="">--Select Course--</option>
             {% for course in courses %}
                 <option value="{{ course.id }}">{{ course.title }}</option>
             {% endfor %}
-        </select>
-    </div>
+        </select><br><br>
 
-    <div style="margin-bottom: 15px;">
-        <label for="professor">Select Professor:</label><br>
-        <select name="professor" id="professor" required style="width: 100%; padding: 8px;">
-            <option value="">-- Choose a professor --</option>
-            {% for professor in professors %}
-                <option value="{{ professor.id }}">{{ professor.name }}</option>
+        <label for="professor">Professor:</label>
+        <select name="professor_id" required>
+            <option value="">--Select Professor--</option>
+            {% for prof in professors %}
+                <option value="{{ prof.id }}">{{ prof.name }}</option>
             {% endfor %}
-        </select>
-    </div>
+        </select><br><br>
 
-    <div style="margin-bottom: 15px;">
-        <label for="rating">Rating (1–5):</label><br>
-        <input type="number" name="rating" min="1" max="5" required style="width: 100%; padding: 8px;">
-    </div>
+        <label for="rating">Rating (1–5):</label>
+        <input type="number" name="rating" min="1" max="5" required><br><br>
 
-    <div style="margin-bottom: 15px;">
-        <label for="difficulty">Difficulty (1–5):</label><br>
-        <input type="number" name="difficulty" min="1" max="5" required style="width: 100%; padding: 8px;">
-    </div>
+        <label for="difficulty">Difficulty (1–5):</label>
+        <input type="number" name="difficulty" min="1" max="5" required><br><br>
 
-    <div style="margin-bottom: 15px;">
         <label for="description">Description:</label><br>
-        <textarea name="description" rows="5" required style="width: 100%; padding: 8px;"></textarea>
-    </div>
+        <textarea name="description" rows="5" cols="40" required></textarea><br><br>
 
-    <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer;">
-        Submit Review
-    </button>
-</form>
+        <button type="submit">Submit Review</button>
+    </form>
 
-{% endblock %}
+    <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+</body>
+</html>
