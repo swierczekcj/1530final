@@ -50,6 +50,19 @@ def home():
     courses = Course.query.all()
     return render_template("home.html", courses=courses)
 
+@app.route("/search", methods=["GET"])
+def search():
+    """Returns searched courses"""
+    error = None
+    search = request.args.get('search', '')
+    app.logger.debug(f"Search term: {search}")
+    if search:
+        searched_courses = Course.query.filter(Course.course_code.contains(search) | Course.title.contains(search)).all()
+        app.logger.debug(f"Search results: {searched_courses}")
+    else:
+        searched_courses = []
+    return render_template("home.html", courses=searched_courses, error=error)
+
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     error = None
