@@ -1,8 +1,22 @@
 {% extends "layout.html" %}
-{% block title %}Owner{% endblock %}
+{% block title %}Course Page{% endblock %}
 {% block body %}
+    <form method="GET" action="/search">
+        <input type="text" name="search" placeholder="Search courses...">
+        <button type="submit" class="btn">Search</button>
+    </form>
     <h2> Course List: </h2>
-    {% for course in courses %}
-        <p><a href="{{ url_for('course', course_id=course.id) }}">  {{ course.course_code }} - {{ course.title }} </a> </p>        
-    {% endfor %}
+    {% if courses %}
+        {% for course in courses %}
+            <p><a href= "{{ url_for( 'course', course_id=course.id) }}"> {{ course.course_code }} - {{ course.title }}</a> </p>
+        {% endfor %}
+        <form action="/" method="GET">
+            <button type="submit" class="btn">Refresh List</button>
+        </form>
+    {% else %}
+        <p>No courses found.</p>
+        <form action="/" method="GET">
+            <button type="submit">Refresh List</button>
+        </form>
+    {% endif %}
 {% endblock %}

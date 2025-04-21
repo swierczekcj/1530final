@@ -1,23 +1,14 @@
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, g, request, session, url_for
-# from flask_sqlalchemy import SQLAlchemy
-# from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-# from sqlalchemy import Enum, Integer, String, Column, ForeignKey, func
 import os
-
 from model import Course, Rating, Professor, db
 
-
 app = Flask(__name__)
-
 SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(app.root_path, "course_critic.db")
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-
 SECRET_KEY = "development key"
 app.secret_key = SECRET_KEY
-
 db.init_app(app)
-
 
 @app.cli.command("initdb")
 def initdb_command():
@@ -47,7 +38,6 @@ def initdb_command():
 
 
 def get_course_id(coursename):
-    """Convenience method to look up the id for a username."""
     rv = db.session.execute(db.select(Course).where(Course.title == coursename)).scalar()
     return rv.id if rv else None
 
@@ -55,28 +45,32 @@ def displayResult(num, ress):
     for res in ress:
         print(f"\nQ{num}:\n{str(res)}\n{repr(res)}\n{type(res)}\n\n")
 
-
 @app.cli.command("check")
 def check():
     stmt = db.select(Course)
-    displayResult(
-        1,
-        db.session.execute(stmt).scalars().all()
-    )
+    displayResult(1, db.session.execute(stmt).scalars().all())
     print("done")
-
 
 @app.route("/")
 def home():
-    """The home page of CourseCritic. Users can view the available classes and their ratings as well as create their own ratings.
-    """
     courses = Course.query.all()
     return render_template("home.html", courses=courses)
 
+@app.route("/search", methods=["GET"])
+def search():
+    """Returns searched courses"""
+    error = None
+    search = request.args.get('search', '')
+    app.logger.debug(f"Search term: {search}")
+    if search:
+        searched_courses = Course.query.filter(Course.course_code.contains(search) | Course.title.contains(search)).all()
+        app.logger.debug(f"Search results: {searched_courses}")
+    else:
+        searched_courses = []
+    return render_template("home.html", courses=searched_courses, error=error)
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
-    """Admin page where new courses can be added."""
     error = None
     if request.method == "POST":
         if not request.form["title"]:
@@ -91,7 +85,6 @@ def admin():
                     request.form["course_code"],
                 )
             db.session.add(new)
-
             db.session.commit()
             flash("Course successfully created")
             return redirect(url_for("admin"))
@@ -99,11 +92,7 @@ def admin():
     
 @app.route("/course/<int:course_id>")
 def course(course_id):
-    """Page where the course info is displayed."""
-    # get course
     course = db.session.execute(db.select(Course).where(Course.id == course_id)).scalar()
-
-    # get ratings
     stmt = db.select(Rating).where(Rating.course_id == course.id)
     ratings = db.session.execute(stmt).scalars().all()
     
@@ -116,3 +105,35 @@ def course(course_id):
 
     return render_template("course.html", course=course, ratings=ratings, diff=diffAvg, work=workAvg, profs=professors)
 
+@app.route("/submit", methods=["GET", "POST"])
+def submit():
+    courses = Course.query.all()
+    professors = Professor.query.all()
+    error = None
+
+    if request.method == "POST":
+        course_id = request.form.get("course_id")
+        prof_id = request.form.get("professor_id")
+        rating = request.form.get("rating")
+        difficulty = request.form.get("difficulty")
+        description = request.form.get("description")
+
+        if not course_id or not prof_id or not rating or not difficulty or not description:
+            error = "All fields are required."
+        else:
+            selected_course = Course.query.get(int(course_id))
+            selected_prof = Professor.query.get(int(prof_id))
+
+            new_rating = Rating(
+                int(rating),
+                int(difficulty),
+                selected_course,
+                selected_prof,
+                description
+            )
+            db.session.add(new_rating)
+            db.session.commit()
+            flash("Your review has been submitted!")
+            return redirect(url_for("home"))
+
+    return render_template("submit.html", courses=courses, professors=professors, error=error)

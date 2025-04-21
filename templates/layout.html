@@ -2,7 +2,6 @@
 <title>{% block title %}CourseCritic{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <div class="page">
-
   {% with flashes = get_flashed_messages() %}
     {% if flashes %}
       <ul class="flashes">
@@ -13,10 +12,17 @@
     {% endif %}
   {% endwith %}
   
+
+  <nav class="navBar">
+    <h1 class="navbar-title">CourseCritic</h1>
+    <div class="nav-links">
+      <a class="nav-links" href="{{ url_for('home') }}">Home</a>
+      <a class="nav-links" href="{{ url_for('admin') }}">Admin</a>
+    </div>
+  </nav>
+
   <div class="body">
   {% block body %}{% endblock %}
   </div>
-
-  <a href="{{ url_for('home') }}">User</a> <a href="{{ url_for('admin') }}">Admin</a>
 
 </div>
