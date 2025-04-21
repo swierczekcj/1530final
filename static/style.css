@@ -10,6 +10,7 @@
     --divider-color: #DBF3F1;
     --message-bg-color: #F0FAF9;
     --error-bg-color: #FAE4E4;
+    --downvote-color: red;
 }
 
 body {
@@ -247,3 +248,37 @@ input[type="text"] {
     border-radius: 4px;
 }
 
+
+.vote-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.score-display {
+    font-weight: bold;
+}
+
+.downvote-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--downvote-color);
+    color: var(--button-text-color);
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.downvote-btn:hover {
+    background-color: var(--error-bg-color);
+}
+
+.rating-div {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: var(--powder-blue);
+}

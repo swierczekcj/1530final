@@ -50,6 +50,23 @@ def home():
     courses = Course.query.all()
     return render_template("home.html", courses=courses)
 
+@app.route("/upvote/<int:rating_id>", methods=['POST'])
+def upvote(rating_id):
+    rating = Rating.query.filter(Rating.id == rating_id).first()
+    rating.score += 1
+    db.session.commit()
+    return redirect(url_for("course", course_id=rating.course_id))
+
+@app.route("/downvote/<int:rating_id>", methods=['POST'])
+def downvote(rating_id):
+    rating = Rating.query.filter(Rating.id == rating_id).first()
+    if(rating.score > 0):
+        rating.score -= 1
+    db.session.commit()
+    return redirect(url_for("course", course_id=rating.course_id))
+
+
+    
 @app.route("/search", methods=["GET"])
 def search():
     """Returns searched courses"""
@@ -87,7 +104,7 @@ def admin():
 @app.route("/course/<int:course_id>")
 def course(course_id):
     course = db.session.execute(db.select(Course).where(Course.id == course_id)).scalar()
-    stmt = db.select(Rating).where(Rating.course_id == course.id)
+    stmt = db.select(Rating).where(Rating.course_id == course.id).order_by(Rating.score.desc())
     ratings = db.session.execute(stmt).scalars().all()
     return render_template("course.html", course=course, ratings=ratings)
 

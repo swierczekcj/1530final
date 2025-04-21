@@ -55,6 +55,7 @@ class Rating(db.Model):
     workload: Mapped[int]
     difficulty: Mapped[int]
     description: Mapped[str] = mapped_column(String(300))
+    score: Mapped[int] = mapped_column(Integer, default=0)
     
     professor_id: Mapped[int] = mapped_column(ForeignKey("prof_table.id"))
     professor: Mapped["Professor"] = relationship("Professor", back_populates="ratings")
