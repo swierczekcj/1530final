@@ -22,24 +22,28 @@ db.init_app(app)
 @app.cli.command("initdb")
 def initdb_command():
     """Reinitializes the database"""
-    prof_Snape = Professor("Snape")
-    course_Potions = Course("Introduction to Potions", "POT 0600")
     db.drop_all()
     db.create_all()
-    db.session.add(Professor("Jonathan Misurda"))
-    db.session.add(Professor("Nicholas Farnan"))
-    db.session.add(Professor("Nadine von Frankenberg und Ludwigsdor"))
-    db.session.add(Professor("William Garrison"))
-    db.session.add(Professor("Jarrett Billingsley"))
-    db.session.add(prof_Snape)
-    db.session.add(Professor("Dumbledore"))
-    db.session.add(Course("Intermediate Programming", "CS 0401"))
-    db.session.add(Course("Defense Against the Dark Arts 2", "DADA 0220"))
-    db.session.add(course_Potions)   
-    db.session.add(Course("Software Engineering", "CS 1530"))
-    db.session.add(Rating(5, 5, course_Potions, prof_Snape, "this class is awesome! professor snape is the potions goat! he once taught me how to make Felix Felicis"))
+    prof_Snape = Professor("Snape")
+    course_Potions = Course("Introduction to Potions", "POT 0600")
+    profs = [Professor("Jonathan Misurda"), Professor("Nadine von Frankenberg"), Professor("Nicholas Farnan"),
+             Professor("William Garrison"), Professor("Jarett Billingsley"), prof_Snape, Professor("Dumbledore")]
+    for prof in profs:
+        db.session.add(prof)
+    courses = [course_Potions, Course("Intermediate Programming", "CS 0401"),
+               Course("Defense Against the Dark Arts 2", "DADA 0220"),  Course("Introduction to Flying", "BRM 0747"),
+               Course("Software Engineering", "CS 1530")]
+    for course in courses:
+        db.session.add(course)
+    db.session.commit()
+    i = 0
+    for prof in profs:
+        prof.courses.append(courses[i % len(courses)])
+        i+=1
     db.session.commit()
     print("Initialized the database.")
+
+
 
 
 def get_course_id(coursename):
@@ -104,12 +108,11 @@ def course(course_id):
     ratings = db.session.execute(stmt).scalars().all()
     
     #get profs
-    ratings2 = course.ratings
-    print(ratings2)
+    professors = course.professors
     
     diffAvg = sum([rating.difficulty for rating in ratings]) / len(ratings) if ratings else 0
     workAvg = sum([rating.workload for rating in ratings]) / len(ratings) if ratings else 0
     # calculate average rating
 
-    return render_template("course.html", course=course, ratings=ratings, diff=diffAvg, work=workAvg)
+    return render_template("course.html", course=course, ratings=ratings, diff=diffAvg, work=workAvg, profs=professors)
 

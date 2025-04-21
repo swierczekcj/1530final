@@ -3,11 +3,22 @@
 {% block body %}
     <h2>Course: {{ course.title }}</h2>
 
+    {% if profs %}
+        <p> Professors:
+        {% for professor in profs%}
+            <p>{{ professor.name }}</p>
+        {% endfor %}
+        </p>
+    {% else %}
+        <p>No one teaches this course!</p>
+    {% endif %}
+
+
     <div class="twitbox">
         <p>Average Difficulty: {{ diff }} Average Workload: {{ work }}</p>
     </div>
 
-    <ul class="ratings">
+    <ul>
         {% for rating in ratings %}
             <h4>Workload:{{ rating.workload }} Difficulty:{{ rating.difficulty }}</h4>        
             <p>{{ rating.description }}</p>
