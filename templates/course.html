@@ -13,8 +13,23 @@
     <h2>Course: {{ course.title }}</h2>
 
     {% for rating in ratings %}
-        <p>Workload: {{ rating.workload }} Difficulty: {{ rating.difficulty }} Professor: {{rating.professor.name}}</p>        
+    <div class="rating-div">
+        <p><strong>Workload:</strong> {{ rating.workload }} | 
+           <strong>Difficulty:</strong> {{ rating.difficulty }} | 
+           <strong>Professor:</strong> {{ rating.professor.name }}</p>
+
         <p>{{ rating.description }}</p>
+
+        <div class="vote-controls">
+            <form method="post" action="{{ url_for('upvote', rating_id=rating.id) }}">
+                <button type="submit" class="btn">▲ Upvote</button>
+            </form>
+            <form method="post" action="{{ url_for('downvote', rating_id=rating.id) }}">
+                <button type="submit" class="downvote-btn">▼ Downvote</button>
+            </form>
+            <span class="score-display">Score: {{ rating.score }}</span>
+        </div>
+    </div>
     {% endfor %}
 
 {% endblock %}
