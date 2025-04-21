@@ -11,6 +11,9 @@
     --message-bg-color: #F0FAF9;
     --error-bg-color: #FAE4E4;
     --downvote-color: red;
+    --submit-green: #28a745;
+    --submit-dgreen: #218838;
+
 }
 
 body {
@@ -281,4 +284,20 @@ input[type="text"] {
     padding: 15px;
     margin-bottom: 20px;
     background-color: var(--powder-blue);
+}
+
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: var(--submit-green);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--submit-dgreen);
 }
