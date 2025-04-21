@@ -135,7 +135,7 @@ div.page ul.messages {
 }
 
 div.page ul.ratings {
-    background: #a9e8ff;
+    background: var(--sky-blue);
     padding: 4px 10px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #eee;
@@ -160,6 +160,16 @@ div.page ul.messages li {
 
 div.page ul.messages p {
     margin: 0;
+}
+
+p.professor {
+    border-radius: 25px;
+    background: var(--powder-blue);
+    display: inline-block;
+    padding: 4px 8px;
+    border: 2px solid #007BFF; /* bootstrap-style blue */
+    border-radius: 4px;
+    color: #000; /* adjust as needed */
 }
 
 div.page ul.messages li img {
@@ -261,3 +271,29 @@ input[type="text"] {
     border-radius: 4px;
 }
 
+
+
+.star-rating {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .star {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml;utf8,<svg fill="none" stroke="gray" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>') no-repeat center;
+    background-size: contain;
+  }
+  
+  .star-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    background: url('data:image/svg+xml;utf8,<svg fill="gold" stroke="orange" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>') no-repeat center;
+    background-size: contain;
+    z-index: 1;
+  }
+  
