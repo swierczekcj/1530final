@@ -12,7 +12,22 @@
 
     <h2>Course: {{ course.title }}</h2>
 
-    {% for rating in ratings %}
+    {% if profs %}
+        <p> Professors:
+    {% for professor in profs%}
+        <p class="professor">{{ professor.name }}</p>
+    {% endfor %}
+        </p>
+    {% else %}
+        <p>No one teaches this course!</p>
+    {% endif %}
+
+
+<div class="twitbox">
+    <p>Average Difficulty: {{ diff }} Average Workload: {{ work }}</p>
+</div>
+
+{% for rating in ratings %}
     <div class="rating-div">
         <p><strong>Workload:</strong> {{ rating.workload }} | 
            <strong>Difficulty:</strong> {{ rating.difficulty }} | 

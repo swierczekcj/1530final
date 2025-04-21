@@ -138,6 +138,20 @@ div.page ul.messages {
     padding: 0;
 }
 
+div.page ul.ratings {
+    background: var(--sky-blue);
+    padding: 4px 10px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
+    color: #3a4e56;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+div.page ul.ratings h4{
+    color: #0d1113;
+    font-size: 14px;
+}
+
 div.page ul.messages li {
     margin: 10px 0;
     padding: 5px;
@@ -150,6 +164,16 @@ div.page ul.messages li {
 
 div.page ul.messages p {
     margin: 0;
+}
+
+p.professor {
+    border-radius: 25px;
+    background: var(--powder-blue);
+    display: inline-block;
+    padding: 4px 8px;
+    border: 2px solid #007BFF; /* bootstrap-style blue */
+    border-radius: 4px;
+    color: #000; /* adjust as needed */
 }
 
 div.page ul.messages li img {
