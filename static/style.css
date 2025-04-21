@@ -10,6 +10,10 @@
     --divider-color: #DBF3F1;
     --message-bg-color: #F0FAF9;
     --error-bg-color: #FAE4E4;
+    --downvote-color: red;
+    --submit-green: #28a745;
+    --submit-dgreen: #218838;
+
 }
 
 body {
@@ -272,28 +276,52 @@ input[type="text"] {
 }
 
 
-
-.star-rating {
+.vote-controls {
     display: flex;
-    gap: 4px;
-  }
-  
-  .star {
-    position: relative;
-    width: 24px;
-    height: 24px;
-    background: url('data:image/svg+xml;utf8,<svg fill="none" stroke="gray" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>') no-repeat center;
-    background-size: contain;
-  }
-  
-  .star-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    overflow: hidden;
-    background: url('data:image/svg+xml;utf8,<svg fill="gold" stroke="orange" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>') no-repeat center;
-    background-size: contain;
-    z-index: 1;
-  }
-  
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.score-display {
+    font-weight: bold;
+}
+
+.downvote-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--downvote-color);
+    color: var(--button-text-color);
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.downvote-btn:hover {
+    background-color: var(--error-bg-color);
+}
+
+.rating-div {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: var(--powder-blue);
+}
+
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: var(--submit-green);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--submit-dgreen);
+}
