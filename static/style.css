@@ -287,6 +287,7 @@ div.error {
     background-color: var(--sky-blue);
     color: var(--button-text-color);
     font-size: 16px;
+    font-family: 'Didot', 'Playfair Display', serif;
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -343,6 +344,7 @@ input[type="text"] {
     background-color: var(--downvote-color);
     color: var(--button-text-color);
     font-size: 16px;
+    font-family: 'Didot', 'Playfair Display', serif;
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
