@@ -97,7 +97,7 @@ input[type="password"] {
     background: white;
     border: 1px solid #BFE6E2;
     padding: 2px;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Didot', 'Playfair Display', serif;
     font-size: 14px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -113,7 +113,7 @@ input[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Didot', 'Playfair Display', serif;
     font-weight: normal;
 }
 
@@ -208,13 +208,13 @@ div.page ul.messages p {
 }
 
 p.professor {
-    border-radius: 25px;
-    background: var(--powder-blue);
+    background: var(--sky-blue);
     display: inline-block;
     padding: 4px 8px;
-    border: 2px solid #007BFF; /* bootstrap-style blue */
-    border-radius: 4px;
-    color: #000; /* adjust as needed */
+    margin-bottom: 0px;
+    border: 2px solid var(--powder-blue); /* bootstrap-style blue */
+    border-radius: 12px;
+    color: var(--message-bg-color); /* adjust as needed */
 }
 
 div.page ul.messages li img {
@@ -230,10 +230,11 @@ div.page ul.messages li small {
 div.page div.twitbox {
     margin: 10px 0;
     padding: 5px;
-    background: var(--message-bg-color);
-    border: 1px solid #94E2DA;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    background: var(--powder-blue);
+    border: 1px solid var(--divider-color);
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
 }
 
 div.page div.twitbox h3 {
@@ -322,6 +323,10 @@ input[type="text"] {
 }
 
 
+#profLabel {
+    margin-bottom: 0px;
+}
+
 .vote-controls {
     display: flex;
     align-items: center;
@@ -339,7 +344,7 @@ input[type="text"] {
     background-color: var(--downvote-color);
     color: var(--button-text-color);
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
@@ -349,20 +354,22 @@ input[type="text"] {
 }
 
 .rating-div {
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: 1px solid var(--sky-blue);
+    border-radius: 12px;
     padding: 15px;
     margin-bottom: 20px;
-    background-color: var(--powder-blue);
+    background-color: var(--message-bg-color);
 }
 
 
 .submit-btn {
     padding: 10px 20px;
+    margin-bottom: -10px;
     background-color: var(--submit-green);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
+    font-family: 'Didot', 'Playfair Display', serif;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;

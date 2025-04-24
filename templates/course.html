@@ -13,7 +13,7 @@
     <h2>Course: {{ course.title }}</h2>
 
     {% if profs %}
-        <p> Professors:
+        <p id="profLabel"> Professors:
     {% for professor in profs%}
         <p class="professor">{{ professor.name }}</p>
     {% endfor %}
