@@ -86,9 +86,8 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px;
 }
-
 
 
 
@@ -126,7 +125,7 @@ div.page {
 
 div.page h1 {
     margin: 0;
-    padding: 10px 14px;
+    padding: 10px 0px;
     color: var(--sunshine-yellow);
     letter-spacing: 1px;
     font-weight: normal;
