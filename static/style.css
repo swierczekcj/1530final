@@ -52,7 +52,7 @@ p {
 }
 
 .course-card {
-    background-color: #f9f9f9;
+    background-color: var(--message-bg-color);
     border-radius: 12px;
     padding: 16px;
     box-shadow: 0 2px 5px var(--sky-blue);
