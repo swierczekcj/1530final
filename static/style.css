@@ -211,9 +211,9 @@ p.professor {
     display: inline-block;
     padding: 4px 8px;
     margin-bottom: 0px;
-    border: 2px solid var(--powder-blue); /* bootstrap-style blue */
+    border: 2px solid var(--powder-blue);
     border-radius: 12px;
-    color: var(--message-bg-color); /* adjust as needed */
+    color: var(--message-bg-color);
 }
 
 div.page ul.messages li img {
@@ -363,7 +363,7 @@ input[type="text"] {
 
 .submit-btn {
     padding: 10px 20px;
-    margin-bottom: -10px;
+    margin-bottom: 0px;
     background-color: var(--submit-green);
     color: white;
     border: none;
@@ -376,4 +376,34 @@ input[type="text"] {
 
 .submit-btn:hover {
     background-color: var(--submit-dgreen);
+}
+
+.dropdown {
+    border-radius: 12px;
+    font-family: 'Didot', 'Playfair Display', serif;
+    background-color: var(--message-bg-color);
+}
+
+#descriptionBox {
+    width: 350px;
+    height: 80px;
+    padding: 10px;
+    background-color: var(--message-bg-color);
+}
+
+#num {
+    padding: 1px 5px 1px 15px;
+}
+
+.newRatingInputs {
+    background: var(--sky-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    width: 350px;
+    margin-bottom: 0px;
+    border: 2px solid var(--powder-blue);
+    border-radius: 12px;
+    color: var(--message-bg-color);
 }
