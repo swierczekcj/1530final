@@ -128,6 +128,15 @@ def submit():
     professors = Professor.query.all()
     error = None
 
+    course_id = request.args.get("course_id", type=int)
+    if course_id:
+        course = Course.query.get(course_id)
+        professors = course.professors if course else []
+        courses = [course] if course else []
+    else:
+        courses = Course.query.all()
+        professors = Professor.query.all()
+
     if request.method == "POST":
         course_id = request.form.get("course_id")
         prof_id = request.form.get("professor_id")
@@ -153,4 +162,4 @@ def submit():
             flash("Your review has been submitted!")
             return redirect(url_for("home"))
 
-    return render_template("submit.html", courses=courses, professors=professors, error=error)
+    return render_template("submit.html", courses=courses, professors=professors, error=error, selected_course_id=course_id)
