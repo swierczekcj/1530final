@@ -4,7 +4,7 @@
 
     <div style="margin-bottom: 20px;">
         <a href="{{ url_for('submit') }}">
-            <button class="submit-btn">
+            <button class="submit-btn" id="createBtn">
                 Create Submission
             </button>
         </a>
@@ -13,7 +13,7 @@
     <h2>Course: {{ course.title }}</h2>
 
     {% if profs %}
-        <p> Professors:
+        <p id="profLabel"> Professors:
     {% for professor in profs%}
         <p class="professor">{{ professor.name }}</p>
     {% endfor %}

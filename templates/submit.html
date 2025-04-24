@@ -3,39 +3,48 @@
 
 {% block body %}
     <h2>Submit a Review</h2>
-
-    <h1 style="color:black;"> Submit a Review</h1>
     
     {% if error %}
         <p style="color:red;">{{ error }}</p>
     {% endif %}
 
     <form method="post">
-        <label for="course">Course:</label>
-        <select name="course_id" required>
-            <option value="">--Select Course--</option>
-            {% for course in courses %}
-                <option value="{{ course.id }}">{{ course.title }}</option>
-            {% endfor %}
-        </select><br><br>
-
-        <label for="professor">Professor:</label>
-        <select name="professor_id" required>
-            <option value="">--Select Professor--</option>
-            {% for prof in professors %}
-                <option value="{{ prof.id }}">{{ prof.name }}</option>
-            {% endfor %}
-        </select><br><br>
-
-        <label for="rating">Rating (1–5):</label>
-        <input type="number" name="rating" min="1" max="5" required><br><br>
-
-        <label for="difficulty">Difficulty (1–5):</label>
-        <input type="number" name="difficulty" min="1" max="5" required><br><br>
-
-        <label for="description">Description:</label><br>
-        <textarea name="description" rows="5" cols="40" required></textarea><br><br>
-
+        <div class="newRatingInputs">
+            <label for="course">Course:</label>
+            <select class="dropdown" name="course_id" required>
+                <option value="">--Select Course--</option>
+                {% for course in courses %}
+                    <option value="{{ course.id }}">{{ course.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br>
+        <div class="newRatingInputs">
+            <label for="professor">Professor:</label>
+            <select class="dropdown" name="professor_id" required>
+                <option value="">--Select Professor--</option>
+                {% for prof in professors %}
+                    <option value="{{ prof.id }}">{{ prof.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br>
+        <div class="newRatingInputs">
+            <label for="rating">Rating (1–5):</label>
+            <input class="dropdown" id="num" type="number" name="rating" min="1" max="5" required>
+        </div>
+        <br>
+        <div class="newRatingInputs">
+            <label for="difficulty">Difficulty (1–5):</label>
+            <input class="dropdown" id="num" type="number" name="difficulty" min="1" max="5" required>
+        </div>
+        <br>
+        <div>
+            <label for="description">Description:</label><br>
+            <textarea id="descriptionBox" class="dropdown" name="description" required></textarea>
+        </div>
+        <br>
+        
         <button type="submit" class="submit-btn">Submit Review</button>
     </form>
 {% endblock %}

@@ -26,10 +26,51 @@ p {
     color: var(--charcoal-gray);
 }
 
+#listH2 {
+    margin-top: 10px;
+}
+
 .nav-links {
     display: flex;
-    gap: 15px;
+    gap: 5px;
     color: var(--sunshine-yellow);
+    background-color: var(--powder-blue);
+    border: none;
+    color: var(--message-bg-color);
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.course-card {
+    background-color: var(--message-bg-color);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 5px var(--sky-blue);
+    transition: transform 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-card a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+#refreshBtn {
+    margin-top: 10px;
 }
 
 a {
@@ -45,18 +86,16 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px;
 }
-
 
 
 
 input[type="text"],
 input[type="password"] {
-    background: white;
-    border: 1px solid #BFE6E2;
+    background: var(--message-bg-color);
     padding: 2px;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Didot', 'Playfair Display', serif;
     font-size: 14px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -72,7 +111,7 @@ input[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Didot', 'Playfair Display', serif;
     font-weight: normal;
 }
 
@@ -85,7 +124,7 @@ div.page {
 
 div.page h1 {
     margin: 0;
-    padding: 10px 14px;
+    padding: 10px 0px;
     color: var(--sunshine-yellow);
     letter-spacing: 1px;
     font-weight: normal;
@@ -167,13 +206,13 @@ div.page ul.messages p {
 }
 
 p.professor {
-    border-radius: 25px;
-    background: var(--powder-blue);
+    background: var(--sky-blue);
     display: inline-block;
     padding: 4px 8px;
-    border: 2px solid #007BFF; /* bootstrap-style blue */
-    border-radius: 4px;
-    color: #000; /* adjust as needed */
+    margin-bottom: 0px;
+    border: 2px solid var(--powder-blue);
+    border-radius: 12px;
+    color: var(--message-bg-color);
 }
 
 div.page ul.messages li img {
@@ -189,10 +228,11 @@ div.page ul.messages li small {
 div.page div.twitbox {
     margin: 10px 0;
     padding: 5px;
-    background: var(--message-bg-color);
-    border: 1px solid #94E2DA;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    background: var(--powder-blue);
+    border: 1px solid var(--divider-color);
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
 }
 
 div.page div.twitbox h3 {
@@ -246,7 +286,8 @@ div.error {
     background-color: var(--sky-blue);
     color: var(--button-text-color);
     font-size: 16px;
-    border-radius: 5px;
+    font-family: 'Didot', 'Playfair Display', serif;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
@@ -267,14 +308,23 @@ div.error {
     margin-bottom: 20px;
 }
 
+#searchBox {
+    border-radius: 12px;
+    padding: 10px;
+}
+
 input[type="text"] {
     padding: 8px;
     width: 250px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid var(--sky-blue);
+    border-radius: 12px;
 }
 
+
+#profLabel {
+    margin-bottom: 0px;
+}
 
 .vote-controls {
     display: flex;
@@ -293,7 +343,8 @@ input[type="text"] {
     background-color: var(--downvote-color);
     color: var(--button-text-color);
     font-size: 16px;
-    border-radius: 5px;
+    font-family: 'Didot', 'Playfair Display', serif;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
@@ -303,20 +354,22 @@ input[type="text"] {
 }
 
 .rating-div {
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: 1px solid var(--sky-blue);
+    border-radius: 12px;
     padding: 15px;
     margin-bottom: 20px;
-    background-color: var(--powder-blue);
+    background-color: var(--message-bg-color);
 }
 
 
 .submit-btn {
     padding: 10px 20px;
+    margin-bottom: 0px;
     background-color: var(--submit-green);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
+    font-family: 'Didot', 'Playfair Display', serif;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -324,4 +377,34 @@ input[type="text"] {
 
 .submit-btn:hover {
     background-color: var(--submit-dgreen);
+}
+
+.dropdown {
+    border-radius: 12px;
+    font-family: 'Didot', 'Playfair Display', serif;
+    background-color: var(--message-bg-color);
+}
+
+#descriptionBox {
+    width: 350px;
+    height: 80px;
+    padding: 10px;
+    background-color: var(--message-bg-color);
+}
+
+#num {
+    padding: 1px 5px 1px 15px;
+}
+
+.newRatingInputs {
+    background: var(--sky-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    width: 350px;
+    margin-bottom: 0px;
+    border: 2px solid var(--powder-blue);
+    border-radius: 12px;
+    color: var(--message-bg-color);
 }
