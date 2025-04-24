@@ -2,21 +2,27 @@
 {% block title %}Course Page{% endblock %}
 {% block body %}
     <form method="GET" action="/search">
-        <input type="text" name="search" placeholder="Search courses...">
+        <input id="searchBox" type="text" name="search" placeholder="Search courses...">
         <button type="submit" class="btn">Search</button>
     </form>
-    <h2> Course List: </h2>
+    <h2 id="listH2"> Course List: </h2>
     {% if courses %}
-        {% for course in courses %}
-            <p><a href= "{{ url_for( 'course', course_id=course.id) }}"> {{ course.course_code }} - {{ course.title }}</a> </p>
-        {% endfor %}
+        <div class="course-grid">
+            {% for course in courses %}
+                <div class="course-card">
+                    <a href="{{ url_for('course', course_id=course.id) }}">
+                        {{ course.course_code }} - {{ course.title }}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
         <form action="/" method="GET">
-            <button type="submit" class="btn">Refresh List</button>
+            <button type="submit" class="btn" id="refreshBtn">Refresh List</button>
         </form>
     {% else %}
         <p>No courses found.</p>
         <form action="/" method="GET">
-            <button class= "btn" type="submit">Refresh List</button>
+            <button class= "btn" id="refreshBtn" type="submit">Refresh List</button>
         </form>
     {% endif %}
 {% endblock %}
