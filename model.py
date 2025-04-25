@@ -6,16 +6,17 @@ from sqlalchemy import Integer, String, Column, ForeignKey, CheckConstraint
 class Base(DeclarativeBase):
     pass
 
-
+# initialize SQLAlchemy database
 db = SQLAlchemy(model_class=Base)
 
-
+# professor table
 prof_course_table = db.Table(
     "prof_course_table",
     Column("professor_id", Integer, ForeignKey("prof_table.id")),
     Column("course_id", Integer, ForeignKey("course_table.id"))
 )
 
+# course model
 class Course(db.Model):
     __tablename__ = "course_table"
 
@@ -31,7 +32,7 @@ class Course(db.Model):
         self.course_code = course_code
         
 
-
+# professor model
 class Professor(db.Model):
     __tablename__ = "prof_table"
 
@@ -44,7 +45,7 @@ class Professor(db.Model):
     def __init__(self, name):
         self.name = name
 
-
+# rating model
 class Rating(db.Model):
     __tablename__ = "ratings_table"
     __table_args__ = (

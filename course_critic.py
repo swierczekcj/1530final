@@ -3,6 +3,7 @@ from flask import Flask, flash, redirect, render_template, g, request, session, 
 import os
 from model import Course, Rating, Professor, db
 
+# set up database
 app = Flask(__name__)
 SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(app.root_path, "course_critic.db")
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
@@ -10,6 +11,7 @@ SECRET_KEY = "development key"
 app.secret_key = SECRET_KEY
 db.init_app(app)
 
+# initialize database with sample data
 @app.cli.command("initdb")
 def initdb_command():
     """Reinitializes the database"""
@@ -36,26 +38,30 @@ def initdb_command():
 
 
 
-
+# get a course's id from its name
 def get_course_id(coursename):
     rv = db.session.execute(db.select(Course).where(Course.title == coursename)).scalar()
     return rv.id if rv else None
 
+# display results (debugging)
 def displayResult(num, ress):
     for res in ress:
         print(f"\nQ{num}:\n{str(res)}\n{repr(res)}\n{type(res)}\n\n")
 
+# test course query and print results
 @app.cli.command("check")
 def check():
     stmt = db.select(Course)
     displayResult(1, db.session.execute(stmt).scalars().all())
     print("done")
 
+# lists all courses for the homepage
 @app.route("/")
 def home():
     courses = Course.query.all()
     return render_template("home.html", courses=courses)
 
+# upvotes on a rating
 @app.route("/upvote/<int:rating_id>", methods=['POST'])
 def upvote(rating_id):
     rating = Rating.query.filter(Rating.id == rating_id).first()
@@ -63,6 +69,7 @@ def upvote(rating_id):
     db.session.commit()
     return redirect(url_for("course", course_id=rating.course_id))
 
+# downvotes on a rating
 @app.route("/downvote/<int:rating_id>", methods=['POST'])
 def downvote(rating_id):
     rating = Rating.query.filter(Rating.id == rating_id).first()
@@ -72,7 +79,7 @@ def downvote(rating_id):
     return redirect(url_for("course", course_id=rating.course_id))
 
 
-    
+# searching courses by title or code    
 @app.route("/search", methods=["GET"])
 def search():
     """Returns searched courses"""
@@ -86,6 +93,7 @@ def search():
         searched_courses = []
     return render_template("home.html", courses=searched_courses, error=error)
 
+# add a new course
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     error = None
@@ -107,6 +115,7 @@ def admin():
             return redirect(url_for("admin"))
     return render_template("admin.html", error=error)
     
+# display course details and associated ratings
 @app.route("/course/<int:course_id>")
 def course(course_id):
     course = db.session.execute(db.select(Course).where(Course.id == course_id)).scalar()
@@ -122,12 +131,14 @@ def course(course_id):
 
     return render_template("course.html", course=course, ratings=ratings, diff=diffAvg, work=workAvg, profs=professors)
 
+# display course details and associated ratings
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
     courses = Course.query.all()
     professors = Professor.query.all()
     error = None
 
+    # filter course and profs
     course_id = request.args.get("course_id", type=int)
     if course_id:
         course = Course.query.get(course_id)
@@ -144,9 +155,11 @@ def submit():
         difficulty = request.form.get("difficulty")
         description = request.form.get("description")
 
+        # validate form input
         if not course_id or not prof_id or not rating or not difficulty or not description:
             error = "All fields are required."
         else:
+            # create and save new rating
             selected_course = Course.query.get(int(course_id))
             selected_prof = Professor.query.get(int(prof_id))
 
