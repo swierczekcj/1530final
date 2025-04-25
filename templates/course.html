@@ -3,7 +3,7 @@
 {% block body %}
 
     <div style="margin-bottom: 20px;">
-        <a href="{{ url_for('submit') }}">
+        <a href="{{ url_for('submit', course_id=course.id) }}">
             <button class="submit-btn" id="createBtn">
                 Create Submission
             </button>
